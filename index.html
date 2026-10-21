@@ -197,5 +197,139 @@ footer{background:#071126;color:#c7d2ed;padding:22px 0;text-align:center;font-si
 </div>
  <style>
 <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+  <!-- SLIDE AUTOMÁTICO WEDATEK -->
+<style>
+.hero-logo {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-logo img {
+  transition: opacity 0.4s ease;
+}
+
+.wedatek-slide-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(13, 27, 58, 0.85);
+  color: white;
+  font-size: 25px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.wedatek-prev {
+  left: 12px;
+}
+
+.wedatek-next {
+  right: 12px;
+}
+
+.wedatek-dots {
+  display: flex;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 14px;
+}
+
+.wedatek-dot {
+  width: 10px;
+  height: 10px;
+  border: none;
+  border-radius: 50%;
+  background: #aab7c9;
+  cursor: pointer;
+}
+
+.wedatek-dot.active {
+  background: #13bfe4;
+  transform: scale(1.25);
+}
+</style>
+
+<script>
+(function () {
+  const caixa = document.querySelector('.hero-logo');
+  const imagem = caixa ? caixa.querySelector('img') : null;
+
+  if (!caixa || !imagem) return;
+
+  // Preserva o logótipo original incorporado no HTML.
+  const logotipoOriginal = imagem.src;
+
+  const imagens = [
+    logotipoOriginal,
+    'wedatek-electricista-1.jpg',
+    'wedatek-electricista-2.jpg'
+  ];
+
+  let atual = 0;
+
+  const anterior = document.createElement('button');
+  anterior.className = 'wedatek-slide-btn wedatek-prev';
+  anterior.innerHTML = '&#10094;';
+  anterior.setAttribute('aria-label', 'Imagem anterior');
+
+  const seguinte = document.createElement('button');
+  seguinte.className = 'wedatek-slide-btn wedatek-next';
+  seguinte.innerHTML = '&#10095;';
+  seguinte.setAttribute('aria-label', 'Imagem seguinte');
+
+  const pontos = document.createElement('div');
+  pontos.className = 'wedatek-dots';
+
+  const botoes = imagens.map(function (_, indice) {
+    const ponto = document.createElement('button');
+    ponto.className = 'wedatek-dot';
+    ponto.setAttribute('aria-label', 'Ver imagem ' + (indice + 1));
+
+    ponto.addEventListener('click', function () {
+      mostrar(indice);
+    });
+
+    pontos.appendChild(ponto);
+    return ponto;
+  });
+
+  function mostrar(indice) {
+    atual = (indice + imagens.length) % imagens.length;
+    imagem.style.opacity = '0';
+
+    setTimeout(function () {
+      imagem.src = imagens[atual];
+      imagem.style.opacity = '1';
+    }, 200);
+
+    botoes.forEach(function (botao, i) {
+      botao.classList.toggle('active', i === atual);
+    });
+  }
+
+  anterior.addEventListener('click', function () {
+    mostrar(atual - 1);
+  });
+
+  seguinte.addEventListener('click', function () {
+    mostrar(atual + 1);
+  });
+
+  caixa.appendChild(anterior);
+  caixa.appendChild(seguinte);
+  caixa.insertAdjacentElement('afterend', pontos);
+
+  mostrar(0);
+
+  setInterval(function () {
+    mostrar(atual + 1);
+  }, 5000);
+})();
+</script>
+<!-- FIM DO SLIDE WEDATEK -->
 </body>
 </html>
