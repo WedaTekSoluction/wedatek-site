@@ -125,6 +125,46 @@ footer{background:#071126;color:#c7d2ed;padding:22px 0;text-align:center;font-si
 <section class="contact" id="contactos"><div class="wrap"><h2 class="section-title">Vamos conversar?</h2><p>Os contactos oficiais serão adicionados quando estiverem definidos. Volte em breve para conhecer as novidades da WedaTek.</p></div></section>
 </main>
 <footer><div class="wrap">© <span id="year"></span> WedaTek — Soluções Tácticas Integrais. Todos os direitos reservados.</div></footer>
+ <style>
+.wedatek-btn {
+  position: fixed;
+  right: 18px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 99999;
+}
+.wedatek-whatsapp {
+  bottom: 90px;
+  background: #25D366;
+}
+.wedatek-facebook {
+  bottom: 22px;
+  background: #1877F2;
+}
+</style>
+
+<a class="wedatek-btn wedatek-whatsapp"
+   href="https://wa.me/244924012938"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Contactar pelo WhatsApp"
+   title="WhatsApp">W</a>
+
+<a class="wedatek-btn wedatek-facebook"
+   href="https://www.facebook.com/profile.php?id=61595426828678"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Visitar o Facebook da WedaTek"
+   title="Facebook">f</a>
 <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
 </body>
 </html>
